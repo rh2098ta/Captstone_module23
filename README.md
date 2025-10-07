@@ -57,7 +57,7 @@ Replace the blanks with your outputs from the notebook:
 -- This indicates grid placement is one of the most important predictors of podium outcomes.
 
 - **Recent form matters**: both driver and team **“so far” podium rates** add predictive signal.
-![Podium vs Team Momentum] (podiumratevsteammomentum.png)
+![Podium vs Team Momentum](podiumratevsteammomentum.png)
 
 - **Baseline ranks contenders reasonably well**: even a simple Logistic Regression gets a useful **top-3 per-race** hit-rate.
 
