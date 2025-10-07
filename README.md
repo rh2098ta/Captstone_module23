@@ -48,6 +48,11 @@ Replace the blanks with your outputs from the notebook:
  [ 339  402]]
 
 ## Findings so far 
-- **Starting grid matters**: podium probability **decreases steadily** as grid position number increases.  
+- **Starting grid matters**: podium probability **decreases steadily** as grid position number increases.
+
+![Podium Rate vs. Starting Grid](images/podium vs starting grid.png)
+
+
 - **Recent form matters**: both driver and team **“so far” podium rates** add predictive signal.  
 - **Baseline ranks contenders reasonably well**: even a simple Logistic Regression gets a useful **top-3 per-race** hit-rate.
+
