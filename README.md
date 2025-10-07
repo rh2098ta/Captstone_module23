@@ -52,7 +52,12 @@ Replace the blanks with your outputs from the notebook:
 
 ![Podium Rate vs. Starting Grid](podiumvsstartinggrid.png)
 
+-- The chart shows that a driver’s starting grid position strongly affects podium chances: the closer to pole position (1), the higher the probability of finishing in the top 3. 
+-- The podium rate drops sharply from over 60% at the front row to near zero beyond about 10th place. 
+-- This indicates grid placement is one of the most important predictors of podium outcomes.
 
-- **Recent form matters**: both driver and team **“so far” podium rates** add predictive signal.  
+- **Recent form matters**: both driver and team **“so far” podium rates** add predictive signal.
+![Podium vs Team Momentum] (podiumratevsteammomentum.png)
+
 - **Baseline ranks contenders reasonably well**: even a simple Logistic Regression gets a useful **top-3 per-race** hit-rate.
 
