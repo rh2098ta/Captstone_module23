@@ -12,15 +12,10 @@ Pre-race probabilities help teams plan strategy (qualifying focus, pit windows, 
 
 ## Data
 - **Source:** Kaggle – *Formula 1 World Championship (1950–2024)* by Rohan Rao.
-- - **Core tables used:** `races`, `results`, `drivers`, `constructors` (optionally `qualifying` later).
-> **Note:** I intentionally **exclude in-race or post-race information** (like pit stop durations or lap times) from features to avoid data leakage in the baseline.
-
-## Leakage Policy (important)
-Module 23, features use only **pre-race** information:
-- **Allowed:** grid position, season year, driver’s historical starts & podiums **before** this race, team’s historical starts & podiums **before** this race.
-- **Not allowed (baseline):** anything only known during/after the race (pit stops, lap times, final position, etc.).
+- - **Main tables used:** `races`, `results`, `drivers`, `constructors` (optionally `qualifying` later).ition, etc.).
 
 ## Method (Module 23)
+
 1. **Load & clean** core tables (join by `raceId`, `driverId`, `constructorId`).
 2. **Target:** `podium = 1` if `positionOrder <= 3`, else `0`.
 3. **Feature engineering (pre-race only):**
@@ -28,26 +23,34 @@ Module 23, features use only **pre-race** information:
    - `driver_starts_so_far`, `driver_podiums_so_far`, `driver_podium_rate_so_far`
    - `team_starts_so_far`, `team_podiums_so_far`, `team_podium_rate_so_far`
    - Implementation ensures “so far” uses **shift(1)** and cumulative counts (no future info).
+   
 4. **EDA visuals (examples):**
+
    - Podium rate vs. starting grid (1 = pole)
    - Podium rate vs. binned driver experience/form
    - Podium rate vs. binned team momentum
-5. **Baseline model:** Logistic Regression  
+   
+5. **Baseline model:** Logistic Regression 
+
    - **Time-aware split**: train on earlier seasons, test on later seasons (more realistic than random split).
+   
 6. **Evaluation:**
+
    - **ROC-AUC** and **accuracy**
    - **Confusion matrix**
    - **Per-race “top-3 hit-rate”**: among each race’s top-3 predicted drivers, how many actually podiumed?
 
 ## Results (Module 23)
-Replace the blanks with your outputs from the notebook:
 
-- **ROC-AUC:** 0.918
-- **Accuracy:** 0.892
+- **ROC-AUC:** 0.918 -- This shows the model’s overall ability to correctly separate podium vs. non-podium cases. A value close to 1 indicates the model is very good at distinguishing the two classes.
+- **Accuracy:** 0.892 -- About 89 % of all predictions (podium and non-podium) were correct.
 - **Confusion matrix:**  [[4099  204]
- [ 339  402]]
+ [ 339  402]] -- Out of all predictions, the model correctly identified 4,099 non-podium finishes and 402 podium finishes, while it made 204 false-positive and 339 false-negative mistakes.
+
+-- The model preforms strongly but still misses some of the podiums within the data, there are some errors though, such as predicts prodiums that do not happen. 
 
 ## Findings so far 
+
 - **Starting grid matters**: podium probability **decreases steadily** as grid position number increases.
 
 ![Podium Rate vs. Starting Grid](podiumvsstartinggrid.png)
