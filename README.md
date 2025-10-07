@@ -59,5 +59,9 @@ Replace the blanks with your outputs from the notebook:
 - **Recent form matters**: both driver and team **“so far” podium rates** add predictive signal.
 ![Podium vs Team Momentum](podiumratevsteammomentum.png)
 
+The chart shows that teams with stronger recent podium performance tend to continue scoring podiums. When a team’s “so-far” podium rate is under 5%, 
+the chance of another podium is near zero, but it rises steadily with momentum — surpassing 30% for teams already above a 20% podium rate. This upward trend highlights 
+that recent team form is a powerful predictor of future podium finishes.
+
 - **Baseline ranks contenders reasonably well**: even a simple Logistic Regression gets a useful **top-3 per-race** hit-rate.
 
