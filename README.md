@@ -50,7 +50,7 @@ Replace the blanks with your outputs from the notebook:
 ## Findings so far 
 - **Starting grid matters**: podium probability **decreases steadily** as grid position number increases.
 
-![Podium Rate vs. Starting Grid](images/podiumvsstartinggrid.png)
+![Podium Rate vs. Starting Grid](podiumvsstartinggrid.png)
 
 
 - **Recent form matters**: both driver and team **“so far” podium rates** add predictive signal.  
