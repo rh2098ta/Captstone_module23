@@ -68,3 +68,24 @@ that recent team form is a powerful predictor of future podium finishes.
 
 - **Baseline ranks contenders reasonably well**: even a simple Logistic Regression gets a useful **top-3 per-race** hit-rate.
 
+Data Cleaning Decisions
+Sorted rows by driver → year → round → raceId so any “so-far” stats only use past races .
+Engineered pre-race features only: grid, year, driver/team starts so far, driver/team podiums so far, and their rates.
+Kept grid = 0 rows for modeling (pit-lane/unknown starts); dropped only from the grid plot where needed.
+Checked key features for missing values — none were present after joins; string position not used (we used numeric positionOrder).
+Did not remove outliers; extreme values reflect real racing (e.g., very high/low grid positions). bold text
+Evaluation Choice (Plain English)
+We report ROC-AUC because podiums are rare, and we care about how well the model ranks likely podium finishers above others across all cutoffs (0.50 = guessing, 1.00 = perfect). We include Accuracy for completeness, but it can be misleading with imbalance. We also report a Top-3 per-race hit-rate**: for each race, take the model’s top 3 predicted drivers and check what fraction actually podiumed—this mirrors the real decision teams make.
+
+Findings & Next Steps
+Findings (test set on newer seasons)
+Best model Decision Tree
+ROC-AUC: 0.926
+Accuracy .897
+Top-3 per-race hit-rate 68.2%
+What this means (nontechnical) Starting closer to the front and having stronger recent driver/team form both raise podium odds. The model’s ranking is useful: on average, about 68% of our “top-3” picks per race actually finish on the podium.
+
+Next steps
+Add weather and circuit-type features (e.g., street vs permanent; recent rain).
+Try gradient boosting and probability calibration to improve probability quality.
+Package a race-day sheet: per-race top-3 list with confidence bands for sponsors/teams.
